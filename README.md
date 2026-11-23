@@ -1,3 +1,9 @@
+<a id="top"></a>
+
+**中文** ｜ [English](#english)
+
+---
+
 # Session Tasks（会话间任务委派）
 
 同一个 agent 的不同会话之间互相派活：发起方建任务，接收方接单、报到、汇报，
@@ -168,6 +174,8 @@ US-010 要求的两件事——**每轮结束自动 `pulse`** 与 **结束前 st
 
 ---
 
+<a id="english"></a>
+
 # Session Tasks (Session2Session) — English
 
 Delegate work between **sessions of the same agent**: the initiator creates a task, the
@@ -281,3 +289,7 @@ reliability (auto-pulse + stop guard) and wiring.
 ## License
 
 MIT (see `LICENSE`).
+
+---
+
+[↑ 中文](#top) ｜ [English](#english)
