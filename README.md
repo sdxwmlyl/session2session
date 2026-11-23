@@ -13,7 +13,7 @@
 | | |
 |---|---|
 | 插件 id | `session-task` |
-| 版本 | `0.1.0` |
+| 版本 | `1.0.3` |
 | 类型 | `general`（普通插件：工具 + 提示词段 + 命令 + HTTP 路由 + 随包 skill） |
 | 最低宿主 | QwenPaw `2.3.0` |
 
@@ -167,6 +167,14 @@ US-010 要求的两件事——**每轮结束自动 `pulse`** 与 **结束前 st
 **上游一旦提供 API**，只需确认签名后删除 `reliability.install` 里的两条
 `getattr` 判断分支——插件侧的调用点已经在 `plugin.py` 里了。
 
+## 变更记录
+
+| 版本 | 日期 | 变更 |
+|---|---|---|
+| **1.0.3** | 2026-11-23 | 提示词段注入「任务协议」四条（先报 working、结束前必报终态、做完仍 submitted 视为失败、只报自己名下任务）；README 增加中英切换与数据边界说明 |
+| 1.0.2 | 2026-11-22 | 投递走宿主 `/api/console/chat` 唤醒目标会话；`task_report` 终态自动回推发起方 |
+| 1.0.0 | 2026-11-21 | 六工具 + 状态机 + 事件流存储 + `/tasks` `/task` `/nudge` |
+
 ## 相关文档
 
 - 操作手册（给 agent 看）：`skills/session-task-playbook/SKILL.md`
@@ -186,7 +194,7 @@ restart never loses it.
 | | |
 |---|---|
 | Plugin id | `session-task` |
-| Version | `0.1.3` |
+| Version | `1.0.3` |
 | Type | `general` (tools + prompt section + commands + HTTP router + bundled skill) |
 | Min host | QwenPaw `2.3.0` |
 
