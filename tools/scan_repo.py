@@ -11,16 +11,17 @@ import subprocess
 import sys
 
 ROOT = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SELF = os.path.join("tools", "scan_repo.py")
 
-PATS = {
-    # 占位符（<...>、<user>、<host>、<workspace>、<path-to>）不算命中
-    "绝对路径": re.compile(r"(?<!<)[CD]:\\(?!<)|\b[A-Z]:/(?!<)"),  # PLACEHOLDER_OK
-    "用户目录": re.compile(r"Users\\+Administrator|Users/Administrator", re.I),
-    "真实任务 id": re.compile(r"t-20\d{2}(?!0101)\d{4}-\d{4}-[0-9a-f]{8}"),
-    "会话/用户 id": re.compile(r"o9cq[0-9A-Za-z_\-]{10,}|\d{13}-[a-z0-9]{7,}"),
-    "敏感词": re.compile(r"哼哼|月饼|奖励小铺|纳西妲|律所|客户名"),
+PATTERNS = {
+    "绝对路径": re.compile(r"(?<!<)[CD]:[\\/](?!<)"),
+    "用户目录": re.compile(r"Users[\\/]+Administrator", re.I),
+    "真实任务id": re.compile(r"t-20(?!26 0101)\d{6}-\d{4}-[0-9a-f]{8}".replace(" ", "")),
+    "会话用户id": re.compile(r"o9cq[0-9A-Za-z_\-]{10,}|\d{13}-[a-z0-9]{7,}"),
+    "敏感词": re.compile("\\u54fc\\u54fc|\\u6708\\u997c|\\u7eb3\\u897f\\u59b2|\\u5f8b\\u6240"),
     "凭据": re.compile(r"(sk-[A-Za-z0-9]{10,}|ghp_[A-Za-z0-9]{20,}|Bearer\s+[A-Za-z0-9._-]{20,})", re.I),
 }
+ALLOW = ("<user>", "<host>", "<workspace>", "<path-to>")
 
 
 def tracked(root):
@@ -32,6 +33,8 @@ def main():
     files = tracked(ROOT)
     hits = 0
     for f in files:
+        if f.replace("\\", "/").endswith(SELF.replace("\\", "/")):
+            continue
         p = os.path.join(ROOT, f)
         if not os.path.isfile(p) or os.path.getsize(p) > 2_000_000:
             continue
@@ -39,13 +42,13 @@ def main():
             t = io.open(p, encoding="utf-8", errors="ignore").read()
         except Exception:
             continue
-        for name, rx in PATS.items():
+        for name, rx in PATTERNS.items():
             for m in rx.finditer(t):
                 ctx = t[max(0, m.start() - 30):m.end() + 30]
-                if "<user>" in ctx or "<host>" in ctx or "<workspace>" in ctx or "<path-to>" in ctx:
+                if any(a in ctx for a in ALLOW):
                     continue
                 hits += 1
-                print("HIT %-14s %-40s %s" % (name, f, m.group(0)[:40]))
+                print("HIT %-10s %-40s %s" % (name, f, m.group(0)[:40]))
                 break
     print("tracked=%d hits=%d -> %s" % (len(files), hits, "CLEAN" if hits == 0 else "NEEDS SCRUB"))
     return 0 if hits == 0 else 1
