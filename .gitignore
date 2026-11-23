@@ -5,3 +5,4 @@ __pycache__/
 *.bak-*
 session-tasks/
 .venv/
+progress.txt 
