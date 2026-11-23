@@ -50,7 +50,7 @@ def _at(seconds: int) -> str:
 # materialize: shape
 # --------------------------------------------------------------------------- #
 def test_materialize_returns_the_fixed_key_set_for_unknown_task(isolated_workspace):
-    view = materialize("t-20261122-2035-ffffffff")
+    view = materialize("t-20260101-0000-d4e5f6a7")
 
     assert tuple(view) == VIEW_KEYS
     assert set(view) == {

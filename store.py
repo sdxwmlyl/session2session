@@ -159,7 +159,7 @@ def _host_workspace_dir() -> Optional[Path]:
 
 #: Pinned workspace for the current task. A host **HTTP request** carries no
 #: agent in its context, so :func:`workspace_root` there degrades to the host
-#: process cwd (``C:\Users\Administrator\.copaw``) and every task written by
+#: process cwd (``C:\Users\<user>\.copaw``) and every task written by
 #: the agent tools becomes invisible. A router pins the right root here with
 #: :func:`workspace_scope` instead of forking a second store implementation.
 _WORKSPACE_OVERRIDE: contextvars.ContextVar[Optional[Path]] = contextvars.ContextVar(

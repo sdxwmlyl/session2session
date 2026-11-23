@@ -9,11 +9,11 @@ still wraps the payload.
 The API these tests encode was read from the installed QwenPaw 2.3 package,
 not guessed:
 
-* ``D:\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\loader.py`` — the entry
+* ``<workspace>\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\loader.py`` — the entry
   module must export ``plugin`` and the loader calls ``plugin.register(api)``.
-* ``D:\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\api.py`` —
+* ``<workspace>\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\api.py`` —
   ``PluginApi.register_tool(tool_name, tool_func, description, icon, enabled)``.
-* ``D:\\QwenPaw\\Lib\\site-packages\\qwenpaw\\app\\agent_context.py`` —
+* ``<workspace>\\QwenPaw\\Lib\\site-packages\\qwenpaw\\app\\agent_context.py`` —
   ``get_current_session_id()`` reads the ``ContextVar`` the runner sets, i.e.
   the host injection point for ``from_session``.
 """

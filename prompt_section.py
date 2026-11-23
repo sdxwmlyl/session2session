@@ -374,7 +374,7 @@ def digest(
     One line per task (at most :data:`MAX_DIGEST_LINES`)::
 
         【会话任务】2 个进行中（每行：id | 标题 | 状态 | 最近心跳）
-        t-20261122-2115-1a2b3c4d | 整理回款明细 | working | 3 分钟前
+        t-20260101-0000-b2c3d4e5 | 整理回款明细 | working | 3 分钟前
         详情 task_get(id)；/tasks 看全部。
 
     The whole block never exceeds :data:`MAX_DIGEST_CHARS`: titles are

@@ -28,7 +28,7 @@
 ```bash
 curl -X POST http://127.0.0.1:<host-port>/api/plugins/install \
      -H "Content-Type: application/json" \
-     -d "{\"source\": \"D:\\\\QwenPawWorkSpace\\\\default\\\\plugins_src\\\\session-task\", \"force\": true}"
+     -d "{\"source\": \"<workspace>\\\\QwenPawWorkSpace\\\\default\\\\plugins_src\\\\session-task\", \"force\": true}"
 ```
 
 确认状态与工具：
@@ -64,8 +64,8 @@ qwenpaw plugin install plugins_src/session-task --force
 
 ```
 /tasks               # 我发起的 + 派给我的，按更新时间倒序（默认摘要）
-/task t-20261122-2223-4b506238
-/nudge t-20261122-2223-4b506238
+/task t-20260101-0000-a1b2c3d4
+/nudge t-20260101-0000-a1b2c3d4
 ```
 
 `/tasks` 只显示摘要（id / 标题 / 状态 / 双方会话 / 更新时间）。要看目标、摘要、
@@ -83,7 +83,7 @@ submitted ──▶ working ──▶ completed
 
 - 终态（`completed` / `failed` / `canceled`）不可改写；内容完全相同的重试返回 `ok`。
 - 只有任务的发起方与接收方能读写这条任务。
-- 任务 id 形如 `t-20261122-2223-4b506238`：分钟时间戳 + 8 位随机 hex，
+- 任务 id 形如 `t-20260101-0000-a1b2c3d4`：分钟时间戳 + 8 位随机 hex，
   同一分钟建两个任务也不会撞车。
 
 ## 数据目录
@@ -129,7 +129,7 @@ submitted ──▶ working ──▶ completed
 
 US-010 要求的两件事——**每轮结束自动 `pulse`** 与 **结束前 stop guard**——
 在 QwenPaw **2.3.0 上无法挂载**，因为宿主没有对应 API。已核对（2026-11-22，
-`D:\QwenPaw\Lib\site-packages\qwenpaw\plugins\api.py`）：
+`<host>/qwenpaw\plugins\api.py`）：
 
 | 需要的 API | 2.3.0 实况 |
 |---|---|
@@ -293,3 +293,14 @@ MIT (see `LICENSE`).
 ---
 
 [↑ 中文](#top) ｜ [English](#english)
+
+## 数据边界（重要）
+
+本仓库**只包含代码**：不含任何本机文件路径、会话/任务真实数据、家庭或客户案例。
+提交前请跑一次脱敏扫描（见 `tools/scan_repo.py`），把绝对路径与真实 id 换成占位符：
+
+```
+D:\<your-workspace>\...   →  <path-to>/...
+wechat:<user>               →  wechat:<user>
+t-2026MMDD-HHMM-xxxx        →  t-20260101-0000-a1b2c3d4
+```

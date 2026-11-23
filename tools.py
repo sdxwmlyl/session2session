@@ -548,7 +548,7 @@ async def task_add(
             最多 50 项，每项最长 500 字符。
 
     Returns:
-        str: 新任务的 task_id（形如 "t-20261122-2115-1a2b3c4d"）。
+        str: 新任务的 task_id（形如 "t-20260101-0000-b2c3d4e5"）。
         失败时返回 {"ok": false, "error": "..."}。
     """
 
@@ -656,7 +656,7 @@ async def task_get(task_id: str) -> dict:
 
     Args:
         task_id (str):
-            任务 ID，由 task_add 返回，例如 "t-20261122-2115-1a2b3c4d"。
+            任务 ID，由 task_add 返回，例如 "t-20260101-0000-b2c3d4e5"。
 
     Returns:
         dict: materialize 出来的完整视图（task_id / state / title / goal /

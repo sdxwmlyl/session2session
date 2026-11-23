@@ -16,7 +16,7 @@ dispatch registry (``runner.query_handler`` would never route it at all).
 The first test reproduces the bridge with a stand-in registry so it runs on
 any interpreter; the second one repeats it against the **installed host** and
 is skipped where ``qwenpaw`` is not importable (i.e. it runs under
-``D:\\QwenPaw\\python.exe``).
+``<workspace>\\QwenPaw\\python.exe``).
 """
 
 from __future__ import annotations
@@ -101,7 +101,7 @@ def test_app_bridge_registers_the_slashed_channel_key(handler_cls, name):
     assert f"/{name}" in registry.registered()
     assert f"//{name}" not in registry.registered()
     assert registry.is_control_command(f"/{name}") is True
-    assert registry.is_control_command(f"/{name} t-20261122-2115-1a2b3c4d 备注") is True
+    assert registry.is_control_command(f"/{name} t-20260101-0000-b2c3d4e5 备注") is True
     assert registry.is_control_command(f"/{name}x") is False
 
 

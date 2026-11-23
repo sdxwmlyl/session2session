@@ -35,7 +35,7 @@ task_add(
     to_session="sub-1a2b3c4d",     # 必须是真实存在的会话 ID
     title="把 11 月周报合成一页",   # 一句话，≤200 字符
     goal="读 11 月四份周报，输出一页 A4 HTML，含 3 张趋势图 …",  # ≤4000 字符
-    artifacts=["D:/x/11月周报.md"],  # 可选：要读或要产出的路径，≤50 项
+    artifacts=["<path-to>/weekly.md"],  # 可选：要读或要产出的路径，≤50 项
 )
 ```
 
@@ -48,8 +48,8 @@ task_add(
 任务卡的形状（插件生成，最多 300 字符，接收方看到的就是这个）：
 
 ```
-【任务 id=t-20261122-2223-4b506238】把 11 月周报合成一页
-来自 wechat:o9cq…｜目标 读四份周报输出一页 A4
+【任务 id=t-20260101-0000-a1b2c3d4】把 11 月周报合成一页
+来自 wechat:<user>｜目标 读四份周报输出一页 A4
 1) task_get({task_id}) 看详情
 2) task_pulse({task_id}, '收到') 接单
 3) 边做边 task_report({task_id}, 'working', '进展')

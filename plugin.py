@@ -1,7 +1,7 @@
 """``session-task`` plugin entry point (US-003, extended in US-005 / US-006).
 
 Registered with the real QwenPaw 2.3 loader contract
-(``D:\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\loader.py``):
+(``<workspace>\\QwenPaw\\Lib\\site-packages\\qwenpaw\\plugins\\loader.py``):
 
 * the module must export ``plugin``;
 * the loader calls ``plugin.register(api)`` (sync or async);

@@ -125,9 +125,9 @@ def test_workspace_root_falls_back_to_cwd(tmp_path, monkeypatch):
 
 
 def test_task_path_is_safe(isolated_workspace):
-    path = store.task_path("t-20261122-2035-a1b2c3d4")
+    path = store.task_path("t-20260101-0000-c3d4e5f6")
     assert path == (
-        isolated_workspace / "session-tasks" / "events" / "t-20261122-2035-a1b2c3d4.jsonl"
+        isolated_workspace / "session-tasks" / "events" / "t-20260101-0000-c3d4e5f6.jsonl"
     )
 
     for bad in ("", "..", "../escape", "sub/dir", "a b", None, 42):
@@ -252,7 +252,7 @@ def test_append_event_rejects_non_finite_numbers():
 
 
 def test_read_missing_task_returns_empty():
-    assert store.read_events("t-20261122-2035-ffffffff") == []
+    assert store.read_events("t-20260101-0000-d4e5f6a7") == []
 
 
 def test_fields_survive_module_reload(isolated_workspace):
